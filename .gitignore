@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+# config file
+config.json
+
+# database file
+database.db
+
+# package lock file
+package-lock.json

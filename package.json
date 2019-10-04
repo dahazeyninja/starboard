@@ -1,0 +1,23 @@
+{
+  "name": "starboard",
+  "version": "1.0.0",
+  "description": "A simple, configurable starboard implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dahazeyninja/starboard.git"
+  },
+  "author": "dahazeyninja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dahazeyninja/starboard/issues"
+  },
+  "homepage": "https://github.com/dahazeyninja/starboard#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "sqlite3": "^4.1.0"
+  }
+}

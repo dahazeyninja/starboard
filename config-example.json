@@ -1,0 +1,7 @@
+{
+	"token": "discord bot user token goes here",
+	"threshold": 2,
+	"channel": "starboard",
+	"nsfw_channel": "nsfw-starboard",
+	"self_star": false
+}

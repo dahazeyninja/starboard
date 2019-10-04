@@ -1,0 +1,2 @@
+require('./database')
+require('./discord')
