@@ -41,7 +41,7 @@ async function reactionAdd(messageReaction, user){
 	if(channel.nsfw){
 		starboard = await getNSFWStarboardChannel(guild);
 		if (!starboard.nsfw){
-			console.log('lewd starboard not lewd');
+			console.log('NSFW Starboard channel is not an NSFW channel');
 
 			return;
 		}
@@ -69,7 +69,6 @@ async function reactionAdd(messageReaction, user){
 
 		db.run('INSERT INTO starboard (msgid,starid) VALUES (?,?);', [message.id, starmessage.id], function(err){
 			if(err && err.message === 'SQLITE_CONSTRAINT: UNIQUE constraint failed: starboard.msgid'){
-				console.log('woops confirmed');
 				reactionAdd(messageReaction, user);
 			} else if (err){
 				console.log(err);
