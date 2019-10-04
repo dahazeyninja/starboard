@@ -37,7 +37,7 @@ const events = {
 };
 
 // This is here because discord does not send full reaction events when a message is not cached (I think)
-// This takes the partial raw event and then builds/emits the full one for use
+// This takes the partial raw event and then builds/caches/emits the full one for use
 client.on('raw', async function(event) {
 	if (!events.hasOwnProperty(event.t)) {
 		return;
