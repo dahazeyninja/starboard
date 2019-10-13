@@ -59,17 +59,17 @@ async function reactionAdd(messageReaction, user){
 	const starId = await getMessageFromDatabase(message.id);
 
 	if (starId){
-		const starmessage = await starboard.fetchMessage(starId);
+		const starMessage = await starboard.fetchMessage(starId);
 
-		if (starmessage){
-			starmessage.edit(`${count} ⭐ - <#${channel.id}> ${message.url}`);
+		if (starMessage){
+			starMessage.edit(`${count} ⭐ - <#${channel.id}> ${message.url}`);
 		}
 	} else {
-		const starmessage = await starboard.send(`${count} ⭐ - <#${channel.id}> ${message.url}`, {embed: createEmbed(message)});
+		const starMessage = await starboard.send(`${count} ⭐ - <#${channel.id}> ${message.url}`, {embed: createEmbed(message)});
 
-		db.run('INSERT INTO starboard (msgid,starid) VALUES (?,?);', [message.id, starmessage.id], function(err){
+		db.run('INSERT INTO starboard (msgid,starid) VALUES (?,?);', [message.id, starMessage.id], function(err){
 			if(err && err.message === 'SQLITE_CONSTRAINT: UNIQUE constraint failed: starboard.msgid'){
-				starmessage.delete();
+				starMessage.delete();
 				reactionAdd(messageReaction, user);
 			} else if (err){
 				console.log(err);
@@ -107,17 +107,17 @@ async function reactionRemove(messageReaction, user){
 	const starId = await getMessageFromDatabase(message.id);
 
 	if (starId){
-		const starmessage = await starboard.fetchMessage(starId);
+		const starMessage = await starboard.fetchMessage(starId);
 
-		if(!starmessage){
+		if(!starMessage){
 			return;
 		}
 
 		if (count >= config.threshold){
-			starmessage.edit(`${count} ⭐ - <#${channel.id}> ${message.url}`);
+			starMessage.edit(`${count} ⭐ - <#${channel.id}> ${message.url}`);
 		} else if (count < config.threshold || count === 0) {
-			starmessage.delete();
-			db.run('DELETE FROM starboard WHERE starid = ?;', [starmessage.id]);
+			starMessage.delete();
+			db.run('DELETE FROM starboard WHERE starid = ?;', [starMessage.id]);
 		}
 	}
 }
