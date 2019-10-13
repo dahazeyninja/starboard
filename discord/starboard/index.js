@@ -31,6 +31,10 @@ async function reactionAdd(messageReaction, user){
 		return;
 	}
 
+	if (users.has(message.author.id && !config.self_star)){
+		count--;
+	}
+
 	if (count < config.threshold) {
 		return;
 	}
@@ -88,6 +92,10 @@ async function reactionRemove(messageReaction, user){
 
 	if (user.id === message.author.id && !config.self_star){
 		return;
+	}
+
+	if (users.has(message.author.id) && !config.self_star){
+		count--;
 	}
 
 	const {channel, guild} = message;
