@@ -69,6 +69,7 @@ async function reactionAdd(messageReaction, user){
 
 		db.run('INSERT INTO starboard (msgid,starid) VALUES (?,?);', [message.id, starmessage.id], function(err){
 			if(err && err.message === 'SQLITE_CONSTRAINT: UNIQUE constraint failed: starboard.msgid'){
+				starmessage.delete();
 				reactionAdd(messageReaction, user);
 			} else if (err){
 				console.log(err);
